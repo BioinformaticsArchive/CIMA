@@ -1,0 +1,14 @@
+This package implements the chemical structure-informed metabolomics analysis (CIMA) strategy proposed by Zhu and Luo (2013). 
+
+****** Code files ******
+'RNM_WinBUGS.txt': WinBUGS code for the RNM model that incorporates more than one summery molecular descriptor (SMD); 
+'RNM_WinBUGS_1.txt': WinBUGS code for RNM model that incorporates only one SMD;
+'CIMA.r': A main function coded in R that implements CIMA with a three-component regression normal mixture model (RNM). It accepts as inputs 1) molecular descriptors, and 2) test statistics generated from analysis of metabolite concentration data, and generate 1) posterior inclusion probabilities for each SMD, 2) chemical-structure-informed local false discovery rates (FDR) for each metabolite, and 3) loading vectors corresponding to the summarized SMDs from principal component analysis that reflect relative contributions of the MDs to the SMDs. The outputs are saved in a few csv files. Details on the functionality and outputs are explained within the code file. 
+
+****** Notes ******
+1) R (http://www.r-project.org/) and WinBUGS (http://www.mrc-bsu.cam.ac.uk/bugs/winbugs/contents.shtml) are required to use the package.  
+1) The CIMA function is essentially a wrapping function that includes setting a few initial values for RNM model parameters for the convinience of the users. However, please note that these defaults for initial values are essentially arbitrary and can always be changed per the need of users. Based on our limited simulation experience, the outputs are not sensitive to moderate changes in these initial values. 
+2) Users should always examine the convergence of MCMC chains before using the results. For this purpose, the current CIMA function asks WinBUGS to save major parameters in the RNM model and to pause after finish running MCMC.
+
+Please cite the following article when using the package:
+Zhu, H. and Luo, M. (2013). Chemical structure informing statistical hypothesis testing in metabolomics. DOI: 10.1093/bioinformatics/btt708
